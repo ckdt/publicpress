@@ -1,0 +1,139 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<meta property="og:image" content=""/> 
+	<meta property="og:title" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:type" content=""/>
+	<meta property="og:description" content=""/>
+
+	<link rel="shortcut icon" href="">
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/style.css" />
+
+
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<div id="site">
+	<header>
+		<h1>Public Press</h1>
+	</header>
+
+	<!-- Original -->
+	<div id="mobile">
+		<div class="post">
+			<div class="image"><img src="http://www.75wanted.com/data/3_romain-courtemanche/240_cannes-et-son-palais/1432717721-0.45395600%201432719791.jpg"></div>
+			<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p>
+			<p class="foot">This is a simple line of text to see if this looks good or not.</p>
+			</div>
+		</div>
+		<div class="post">
+			<div class="image"><img src="http://payload378.cargocollective.com/1/0/31246/9867295/17D152-K54_E_235_2_811.jpeg"></div>
+			<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien.</p></div>
+		</div>
+		<div class="post">
+			<div class="image"><img src="http://38.media.tumblr.com/tumblr_m8w9odWqeW1qamm7n.jpg"></div>
+			<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p></div>
+		</div>
+		<div class="post">
+			<div class="image"><img src="http://www.ignant.de/wp-content/uploads/2015/05/Southafrica_Anke_01.jpg"></div>
+			<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p></div>
+		</div>
+		<div class="post">
+			<div class="image"><img src="http://www.75wanted.com/data/3_romain-courtemanche/51_i/1401378545-0.48613300%201401378869.jpg"></div>
+			<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p></div>
+		</div>
+		<div class="post">
+			<div class="image"><img src="http://38.media.tumblr.com/c12844b8cd4baace9ff76218c9d90f93/tumblr_inline_nh7360lsUV1qau50i.jpg"></div>
+			<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p></div>
+		</div>
+	</div>
+	<!-- New Situation -->
+	<div id="desktop">
+	</div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+
+(function($,sr){
+	var debounce = function (func, threshold, execAsap) {
+	var timeout;
+	return function debounced () {
+		var obj = this, args = arguments;
+		function delayed () {
+			if (!execAsap)
+				func.apply(obj, args);
+			timeout = null;
+		};
+
+	  	if (timeout)
+	    	clearTimeout(timeout);
+	    else if (execAsap)
+	    	func.apply(obj, args);
+	    	timeout = setTimeout(delayed, threshold || 100);
+		};
+	}
+	jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+})(jQuery,'smartresize');
+
+$(window).smartresize(function(){
+	$(".col").width(($(window).width()-50)/2);
+
+	if( $(window).width() < 750 ){
+		$('#mobile').show();
+		$('#desktop').hide();
+	}else{
+		$('#mobile').hide();
+		$('#desktop').show();
+	}
+});
+
+
+$(document).ready(function() {
+
+	// Duplicate mobile content to desktop
+	$('.post').clone().appendTo('#desktop');
+
+	// Find all Odd and Even posts
+	var $evenPosts = $('#desktop .post:even');
+	var $oddPosts = $('#desktop .post:odd');
+
+	// Wrap in columns accordingly
+		$evenPosts.wrapAll('<div id="col-one" class="col"></div>');
+		$oddPosts.wrapAll('<div id="col-two" class="col"></div>');
+
+		// Alternate left and right class col-one
+		$("#col-one .post:even").addClass("left");
+		$("#col-one .post:odd").addClass("right");
+
+		$("#col-two .post:even").addClass("left");
+		$("#col-two .post:odd").addClass("right");
+
+
+
+		$(".col").width(($(window).width()-50)/2);
+
+		if( $(window).width() < 750 ){
+		$('#mobile').show();
+		$('#desktop').hide();
+	}else{
+		$('#mobile').hide();
+		$('#desktop').show();
+	}
+	});
+</script>
+</body>
+</html>
