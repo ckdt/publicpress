@@ -12,7 +12,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="https://rawgit.com/ckdt/publicpress/master/css/style.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 </head>
 <body>
@@ -157,76 +157,8 @@
 		</footer>
 	</div>
 	
-	<script type="text/javascript" src="js/vendor/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript">
-
-	(function($,sr){
-		var debounce = function (func, threshold, execAsap) {
-		var timeout;
-		return function debounced () {
-			var obj = this, args = arguments;
-			function delayed () {
-				if (!execAsap)
-					func.apply(obj, args);
-				timeout = null;
-			};
-
-		  	if (timeout)
-		    	clearTimeout(timeout);
-		    else if (execAsap)
-		    	func.apply(obj, args);
-		    	timeout = setTimeout(delayed, threshold || 100);
-			};
-		}
-		jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
-	})(jQuery,'smartresize');
-
-	$(window).smartresize(function(){
-		$(".col").width(($(window).width()-50)/2);
-
-		if( $(window).width() < 750 ){
-			$('#mobile').show();
-			$('#desktop').hide();
-		}else{
-			$('#mobile').hide();
-			$('#desktop').show();
-		}
-	});
-
-
-	$(document).ready(function() {
-
-		// Duplicate mobile content to desktop
-		$('.post').clone().appendTo('#desktop');
-
-		// Find all Odd and Even posts
-		var $evenPosts = $('#desktop .post:even');
-		var $oddPosts = $('#desktop .post:odd');
-
-		// Wrap in columns accordingly
-			$evenPosts.wrapAll('<div id="col-one" class="col"></div>');
-			$oddPosts.wrapAll('<div id="col-two" class="col"></div>');
-
-			// Alternate left and right class col-one
-			$("#col-one .post:even").addClass("left");
-			$("#col-one .post:odd").addClass("right");
-
-			$("#col-two .post:even").addClass("left");
-			$("#col-two .post:odd").addClass("right");
-
-
-
-			$(".col").width(($(window).width()-50)/2);
-
-			if( $(window).width() < 750 ){
-			$('#mobile').show();
-			$('#desktop').hide();
-		}else{
-			$('#mobile').hide();
-			$('#desktop').show();
-		}
-		});
-	</script>
-
+	<script type="text/javascript" src="https://rawgit.com/ckdt/publicpress/master/js/vendor/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="https://rawgit.com/ckdt/publicpress/master/js/plugins.js"></script>
+	<script type="text/javascript" src="https://rawgit.com/ckdt/publicpress/master/js/script.js"></script>
 </body>
 </html>
