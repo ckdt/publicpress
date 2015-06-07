@@ -1,0 +1,232 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<title>{Title}</title>
+	<link rel="shortcut icon" href="{Favicon}">
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+	{block:Description}
+	<meta name="description" content="{MetaDescription}" />
+	{/block:Description}
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/style.css" />
+	<script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+	<div id="site">
+		<header>
+			<h1>{Title}</h1>
+			{block:Description}
+			<p id="description">{Description}</p>
+			{/block:Description}
+		</header>
+		<section id="content">
+			<!-- Mobile Content -->
+			<div id="mobile">
+				<div class="posts">
+					{block:Posts}
+						
+						{block:Text}
+						<div class="post text">
+							{block:Title}
+							<h3><a href="{Permalink}">{Title}</a></h3>
+							{/block:Title}{Body}
+						</div>
+						{/block:Text}
+						
+						{block:Photo}
+						<div class="post photo">
+							<div class="image">
+								<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+							</div>
+							{block:Caption}
+							<div class="caption">
+								{Caption}
+							</div>
+							{/block:Caption}
+						</div>
+						{/block:Photo}
+					
+						{block:Panorama}
+						<div class="post panorama">
+							<div class="image">
+								{LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>{LinkCloseTag}
+							</div>
+							{block:Caption}
+							<div class="caption">
+								{Caption}
+							</div>
+							{/block:Caption}
+						</div>
+						{/block:Panorama}
+
+						{block:Photoset}
+						<div class="post photoset">
+							<div class="image">
+								{Photoset-500}
+							</div>
+							{block:Caption}
+							<div class="caption">
+								{Caption}
+							</div>
+							{/block:Caption}
+						</div>
+						{/block:Photoset}
+
+						{block:Quote}
+						<div class="post quote">
+							"{Quote}"
+							{block:Source}
+							<div class="source">{Source}</div>
+							{/block:Source}
+						</div>
+						{/block:Quote}
+
+						{block:Link}
+						<div class="post link">
+							<a href="{URL}" class="link" {Target}>{Name}</a>
+							{block:Description}
+							<div class="description">{Description}</div>
+							{/block:Description}
+						</div>
+						{/block:Link}
+
+						{block:Chat}
+						<div class="post chat">
+							{block:Title}
+							<h3><a href="{Permalink}">{Title}</a></h3>
+							{/block:Title}
+							<ul class="chat">
+								{block:Lines}
+								<li class="{Alt} user_{UserNumber}">
+									{block:Label}
+									<span class="label">{Label}</span>
+									{/block:Label}
+									{Line}
+								</li>
+								{/block:Lines}
+							</ul>
+						</div>
+						{/block:Chat}
+
+						{block:Video}
+						<div class="post video">
+							<div class="video-player">
+								{Video-500}
+							</div>
+							{block:Caption}
+							<div class="caption">
+								{Caption}
+							</div>
+							{/block:Caption}
+						</div>
+						{/block:Video}
+					
+						{block:Audio}
+						<div class="post audio">
+							<div class="audio-player">
+								{AudioEmbed}
+							</div>
+							{block:Caption}
+							<div class="caption">
+								{Caption}
+							</div>
+							{/block:Caption}
+						</div>
+						{/block:Audio}
+
+					{/block:Posts}
+				</div>
+			</div>
+			<!-- Desktop Content (Appended by jQuery) -->
+			<div id="desktop"></div>
+		</section>
+		<footer>
+			<p id="footer">
+			{block:PreviousPage}
+			<a href="{PreviousPage}">&#171; Previous</a>
+			{/block:PreviousPage}{block:NextPage}
+			<a href="{NextPage}">Next &#187;</a>
+			{/block:NextPage}
+
+			<a href="/archive">Archive</a>
+			</p>
+		</footer>
+	</div>
+	
+	<script type="text/javascript" src="js/vendor/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript">
+
+	(function($,sr){
+		var debounce = function (func, threshold, execAsap) {
+		var timeout;
+		return function debounced () {
+			var obj = this, args = arguments;
+			function delayed () {
+				if (!execAsap)
+					func.apply(obj, args);
+				timeout = null;
+			};
+
+		  	if (timeout)
+		    	clearTimeout(timeout);
+		    else if (execAsap)
+		    	func.apply(obj, args);
+		    	timeout = setTimeout(delayed, threshold || 100);
+			};
+		}
+		jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
+	})(jQuery,'smartresize');
+
+	$(window).smartresize(function(){
+		$(".col").width(($(window).width()-50)/2);
+
+		if( $(window).width() < 750 ){
+			$('#mobile').show();
+			$('#desktop').hide();
+		}else{
+			$('#mobile').hide();
+			$('#desktop').show();
+		}
+	});
+
+
+	$(document).ready(function() {
+
+		// Duplicate mobile content to desktop
+		$('.post').clone().appendTo('#desktop');
+
+		// Find all Odd and Even posts
+		var $evenPosts = $('#desktop .post:even');
+		var $oddPosts = $('#desktop .post:odd');
+
+		// Wrap in columns accordingly
+			$evenPosts.wrapAll('<div id="col-one" class="col"></div>');
+			$oddPosts.wrapAll('<div id="col-two" class="col"></div>');
+
+			// Alternate left and right class col-one
+			$("#col-one .post:even").addClass("left");
+			$("#col-one .post:odd").addClass("right");
+
+			$("#col-two .post:even").addClass("left");
+			$("#col-two .post:odd").addClass("right");
+
+
+
+			$(".col").width(($(window).width()-50)/2);
+
+			if( $(window).width() < 750 ){
+			$('#mobile').show();
+			$('#desktop').hide();
+		}else{
+			$('#mobile').hide();
+			$('#desktop').show();
+		}
+		});
+	</script>
+
+</body>
+</html>
