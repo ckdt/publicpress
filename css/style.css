@@ -14,6 +14,10 @@ body{
 	box-sizing: border-box;
 	background:#eee;
 }
+#posts{
+	overflow: hidden;
+	background: purple;
+}
 
 #posts[data-columns]::before {
 	content: '2 .column.size-1of2';
