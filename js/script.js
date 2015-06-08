@@ -9,9 +9,10 @@ $(document).ready(function() {
 			navSelector  : '.pagenav',
 			nextSelector : '.next',
 			itemSelector : '.post',
+			dataType: 'json',
 			appendCallback : false
 		}, function(newElements) {
-			console.log("called");
+			console.log("called",newElements,"wtf");
 			var items = [];
 			for(i=0; i < newElements.length; i++) {
 
