@@ -5,7 +5,7 @@ $(document).ready(function() {
 	imagesLoaded( $posts, function() {
 		$('#preloader').hide();
 
-		$('#content').infinitescroll({
+		$('#site').infinitescroll({
 			navSelector  : '.pagenav',
 			nextSelector : '.next',
 			itemSelector : '.post',
