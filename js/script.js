@@ -22,6 +22,7 @@ $(document).ready(function() {
 			navSelector : '.pagenav',
 			nextSelector : '.next',
 			itemSelector : '.post',
+			appendCallback: false,
 			function (ne){
 				console.log( ne );
 			}
