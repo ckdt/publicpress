@@ -14,75 +14,37 @@ body{
 	box-sizing: border-box;
 	background:#eee;
 }
-#mobile{
-	/*display: none;*/
-	max-width: 750px;
-	position: absolute;
-	z-index: 10;
-	background: rgba(255,0,0,0.8);
-}
 
-#desktop{
-	background: #fff;
+#posts[data-columns]::before {
+	content: '2 .column.size-1of2';
+}
+.column { float: left; }
+.size-1of2 { width: 50%; }
+
+.post{
+	padding:20px;
+	background: red;
 	overflow: hidden;
 }
-
-#col-one{
-	float: left;
-}
-#col-two{
-	float: left;
-}
-
-.post.left{
-	float: left;
-}
-.post.left .image,
-.post.left .caption{
-	float:left;
-}
-.post.right{
-	float: right;
-}
-.post.right .image,
-.post.right .caption{
-	float:right;
+.post .image{
+	width: 75%;
+	background: yellow;
 }
 .post .caption{
-	width: 66.6%;
-	margin-bottom: 50px;
-}
-.post .caption p{
-	padding: 10px 0 20px 20px;
-	margin: 0;
-}
-.post .image{
-	display: block;
-	 	width: 66.6%;
+	margin-left: 20%;
+	width: 55%;
 }
 .post .image img{
-	width:100%;
-}
-
-.foot{
-
-	font-family: "Inconsolata";
-	font-size: 0.75em;
-}
-header h1{
-	margin: 0;
-	padding: 0 0 25px 0;
-	text-transform: uppercase;
-}
-
-.preloader{
-	position: absolute;
 	width: 100%;
-	height: 100%;
-	background: rgba(255,255,255,0.9);
-	text-align: center;
 }
-.preloader img{
-	display: block;
-	margin: 0px auto;
+.post:nth-child(2n+0){
+	background: blue;
+}
+.post:nth-child(2n+0) .image,
+.post:nth-child(2n+0) .caption{
+	float:right;
+}
+
+#preloader{
+	content: 'loading...';
 }
