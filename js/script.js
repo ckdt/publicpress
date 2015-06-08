@@ -13,14 +13,49 @@ $(window).smartresize(function(){
 
 $(document).ready(function() {
 
-	// Duplicate mobile content to desktop
-	$('.post').clone().appendTo('#desktop');
+	var $posts = $('#mobile .post');
+	imagesLoaded( $posts, function() {
+		$('.preloader').hide();
+		setupDesktop();
+		
+		$('#desktop').infinitescroll({
+			navSelector : '.pagenav',
+			nextSelector : '.next',
+			itemSelector : '.post',
+			function (ne){
+				console.log( ne );
+			}
 
-	// Find all Odd and Even posts
-	var $evenPosts = $('#desktop .post:even');
-	var $oddPosts = $('#desktop .post:odd');
+		});
 
-	// Wrap in columns accordingly
+		/*$('#mobile').infinitescroll({
+				navSelector  : '#pagenav',
+				nextSelector : '.next',
+				itemSelector : '.post',
+				loading: {
+					finishedMsg: 'End of site.',
+					img: loaderimg
+				}
+			},
+			function( newElements ) {
+				var $newElems = $( newElements ).css({ opacity: 0 });
+				$newElems.imagesLoaded(function(){
+					fakeReload($newElems,false);
+				});
+			}
+		);*/
+
+	});
+
+	function setupDesktop(){
+		// Duplicate mobile content to desktop
+		$('#mobile .post').clone().appendTo('#desktop');
+
+		// Find all Odd and Even posts
+		var $evenPosts = $('#desktop .post:even');
+		var $oddPosts = $('#desktop .post:odd');
+
+		// Wrap in columns accordingly
 		$evenPosts.wrapAll('<div id="col-one" class="col"></div>');
 		$oddPosts.wrapAll('<div id="col-two" class="col"></div>');
 
@@ -30,6 +65,12 @@ $(document).ready(function() {
 
 		$("#col-two .post:even").addClass("left");
 		$("#col-two .post:odd").addClass("right");
+	}
+
+
+
+
+
 
 
 

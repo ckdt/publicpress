@@ -17,6 +17,7 @@
 </head>
 <body>
 	<div id="site">
+		<div class="preloader"><img src="http://i.giphy.com/JbmRuCMotLbLq.gif">loading...</div>
 		<header>
 			<h1>{Title}</h1>
 			{block:Description}
@@ -145,15 +146,15 @@
 			<div id="desktop"></div>
 		</section>
 		<footer>
-			<p id="footer">
-			{block:PreviousPage}
-			<a href="{PreviousPage}">&#171; Previous</a>
-			{/block:PreviousPage}{block:NextPage}
-			<a href="{NextPage}">Next &#187;</a>
-			{/block:NextPage}
+			<div class="pagenav">
+				{block:PreviousPage}
+				<a href="{PreviousPage}" class="prev">&#171; Previous</a>
+				{/block:PreviousPage}{block:NextPage}
+				<a href="{NextPage}" class="next">Next &#187;</a>
+				{/block:NextPage}
+			</div>
 
 			<a href="/archive">Archive</a>
-			</p>
 		</footer>
 	</div>
 	
