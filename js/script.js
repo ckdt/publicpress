@@ -2,10 +2,8 @@ $(document).ready(function() {
 	var $posts = $('#posts');
 	var grid = $posts;
 
-	imagesLoaded( $posts, function() {
-		$('#preloader').hide();
 
-		$posts.infinitescroll({
+	$posts.infinitescroll({
 			navSelector  : ".pagenav",
             nextSelector : ".next",
             itemSelector : ".post",
@@ -23,6 +21,12 @@ $(document).ready(function() {
 		    }
 		    salvattore['append_elements'](grid, items);
 		});
+	
+
+	imagesLoaded( $posts, function() {
+		$('#preloader').hide();
+
+		
 
 		/*$('#site').infinitescroll({
 			navSelector  : '.pagenav',
