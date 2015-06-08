@@ -5,11 +5,10 @@ $(document).ready(function() {
 	imagesLoaded( $posts, function() {
 		$('#preloader').hide();
 
-		$('#posts').infinitescroll({
+		$('#content').infinitescroll({
 			navSelector  : '.pagenav',
 			nextSelector : '.next',
 			itemSelector : '.post',
-			dataType: 'json',
 			appendCallback : false
 		}, function(newElements) {
 			console.log("called");
