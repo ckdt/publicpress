@@ -24,8 +24,8 @@ $(document).ready(function() {
 			itemSelector : '.post',
 			function (ne){
 
-				var $evenPosts = $( ne ).is(':even');
-				var $oddPosts =  $( ne ).is(':odd');
+				var $evenPosts = $(this).is(':even');
+				var $oddPosts =  $(this).is(':odd');
 
 				$evenPosts.appendTo('#col-one');
 				$oddPosts.appendTo('#col-two');
@@ -35,8 +35,8 @@ $(document).ready(function() {
 
 				$("#col-two .post:even").addClass("left");
 				$("#col-two .post:odd").addClass("right");
-				
-				console.log( ne );
+
+				console.log( $(this), ne );
 			}
 
 		});
