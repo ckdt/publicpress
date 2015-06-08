@@ -9,7 +9,8 @@ $(document).ready(function() {
             itemSelector : ".post",
             appendCallback : false,
 		}, function(newElements) {
-		    var items = [];
+			console.log(newElements);
+		   /* var items = [];
 		    var grid = $('#posts');
 		    for(i=0; i < newElements.length; i++) {
 		        var item_html = $(newElements[i]);
@@ -21,7 +22,7 @@ $(document).ready(function() {
 		                items.push(item);
 		    }
 
-		    salvattore['append_elements'](grid, items);
+		    salvattore['append_elements'](grid, items);*/
 		});
 
 
