@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var $posts = $('#posts');
 	var grid = $posts;
-	
+
 	imagesLoaded( $posts, function() {
 		$('#preloader').hide();
 
@@ -11,6 +11,7 @@ $(document).ready(function() {
 			itemSelector : '.post',
 			appendCallback : false,
 		}, function(newElements) {
+			console.log("called");
 			var items = [];
 			for(i=0; i < newElements.length; i++) {
 
