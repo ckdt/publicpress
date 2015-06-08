@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	var $posts = $('#posts');
-	var grid = $posts;
+	
 
 
 	$posts.infinitescroll({
@@ -10,6 +10,7 @@ $(document).ready(function() {
             appendCallback : false,
 		}, function(newElements) {
 		    var items = [];
+		    var grid = $('#posts');
 		    for(i=0; i < newElements.length; i++) {
 		        var item_html = $(newElements[i]);
 		        item_html = item_html.context.innerHTML;
@@ -19,9 +20,10 @@ $(document).ready(function() {
 
 		                items.push(item);
 		    }
+
 		    salvattore['append_elements'](grid, items);
 		});
-	
+
 
 	imagesLoaded( $posts, function() {
 		$('#preloader').hide();
