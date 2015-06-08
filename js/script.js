@@ -1,13 +1,13 @@
 $(window).smartresize(function(){
 	$(".col").width(($(window).width()-50)/2);
 
-	if( $(window).width() < 750 ){
+	/*if( $(window).width() < 750 ){
 		$('#mobile').show();
 		$('#desktop').hide();
 	}else{
 		$('#mobile').hide();
 		$('#desktop').show();
-	}
+	}*/
 });
 
 
@@ -17,7 +17,7 @@ $(document).ready(function() {
 	imagesLoaded( $posts, function() {
 		$('.preloader').hide();
 		setupDesktop();
-		
+
 		$('#desktop').infinitescroll({
 			navSelector : '.pagenav',
 			nextSelector : '.next',
@@ -76,11 +76,11 @@ $(document).ready(function() {
 
 		$(".col").width(($(window).width()-50)/2);
 
-		if( $(window).width() < 750 ){
+	/*	if( $(window).width() < 750 ){
 		$('#mobile').show();
 		$('#desktop').hide();
 	}else{
 		$('#mobile').hide();
 		$('#desktop').show();
-	}
+	}*/
 });

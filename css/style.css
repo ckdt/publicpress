@@ -15,7 +15,10 @@ body{
 	background:#eee;
 }
 #mobile{
-	display: none;
+	/*display: none;*/
+	max-width: 750px;
+	position: absolute;
+	z-index: 10;
 }
 
 #desktop{
