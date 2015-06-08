@@ -9,6 +9,7 @@ $(document).ready(function() {
 			navSelector  : '#pagenav',
 			nextSelector : '.next',
 			itemSelector : '.post',
+			dataType: 'html',
 			appendCallback : false,
 		}, function(newElements) {
 			console.log("called");
