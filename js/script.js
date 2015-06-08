@@ -16,20 +16,23 @@ $(document).ready(function() {
             itemSelector : ".post",
             appendCallback : false,
 		}, function(newElements) {
-			console.log(newElements);
-		   /* var items = [];
+			console.log("original",newElements);
+		   	
+		   	var items = [];
 		    var grid = $('#posts');
+
 		    for(i=0; i < newElements.length; i++) {
 		        var item_html = $(newElements[i]);
-		        item_html = item_html.context.innerHTML;
+		        	item_html = item_html.context.innerHTML;
 		        var item = document.createElement('div');
-		        item.innerHTML = item_html;
-		        item.setAttribute('class', 'required-classname');
-
-		                items.push(item);
+		        	item.innerHTML = item_html;
+		        	item.setAttribute('class', 'required-classname');
+					items.push(item);
 		    }
 
-		    salvattore['append_elements'](grid, items);*/
+		    console.log("grid:",grid, "items:", items);
+
+		    salvattore['append_elements'](grid, items);
 		});
 
 	}
