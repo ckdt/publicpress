@@ -22,8 +22,20 @@ $(document).ready(function() {
 			navSelector : '.pagenav',
 			nextSelector : '.next',
 			itemSelector : '.post',
-			appendCallback: false,
 			function (ne){
+
+				var $evenPosts = $( ne ).is(':even');
+				var $oddPosts =  $( ne ).is(':odd');
+
+				$evenPosts.appendTo('#col-one');
+				$oddPosts.appendTo('#col-two');
+				
+				$("#col-one .post:even").addClass("left");
+				$("#col-one .post:odd").addClass("right");
+
+				$("#col-two .post:even").addClass("left");
+				$("#col-two .post:odd").addClass("right");
+				
 				console.log( ne );
 			}
 
