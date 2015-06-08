@@ -5,12 +5,12 @@ $(document).ready(function() {
 	imagesLoaded( $posts, function() {
 		$('#preloader').hide();
 
-		$('#content').infinitescroll({
-			navSelector  : '#pagenav',
+		$('#posts').infinitescroll({
+			navSelector  : '.pagenav',
 			nextSelector : '.next',
 			itemSelector : '.post',
-			dataType: 'html',
-			appendCallback : false,
+			dataType: 'json',
+			appendCallback : false
 		}, function(newElements) {
 			console.log("called");
 			var items = [];
@@ -29,5 +29,3 @@ $(document).ready(function() {
 
 	});
 });
-
-
