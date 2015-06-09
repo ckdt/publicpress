@@ -34,12 +34,43 @@
 	/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
 
 		html,body{
+			height: 100%;
 			width: 100%;
-			padding: 0;
+			-webkit-text-size-adjust: 100%;
+			-webkit-font-smoothing: antialiased;
 			margin: 0;
-			box-sizing: border-box;
+			padding: 0;
 		}
-		
+		body{
+			font-family: "Karla", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+			font-size: 1.15em;
+			line-height: 1.25;
+			color: #222;
+			box-sizing: border-box;
+			background:#eee;
+		}
+		header{
+			margin: 0;
+			padding: 0;
+		}
+		header h1{
+			font-size: 1.75em;
+			line-height: 1.25;
+			letter-spacing: -1px;
+			font-weight: normal;
+
+			margin: 0;
+			padding: 25px 38px;
+		}
+
+		#content{
+			background: #fff;
+		}
+
+		#posts{
+			overflow: hidden;
+		}
+
 		#posts[data-columns]::before {
 			content: '2 .column.size-1of2';
 		}
@@ -47,36 +78,76 @@
 		.size-1of2 { width: 50%; }
 
 		.post{
-			padding:20px;
-			background: red;
+			padding:25px;
 			overflow: hidden;
 		}
 		.post .image{
-			width: 75%;
+			width: 85%;
 			background: yellow;
 		}
 		.post .caption{
-			margin-left: 20%;
+			float: left;
+			margin-left: 30%;
 			width: 55%;
+			padding: 15px 0 30px 0;
 		}
+		.post .caption h1,
+		.post .caption h2,
+		.post .caption h3,
+		.post .caption h4,
+		.post .caption h5,
+		.post .caption h6{
+			font-size: 1.50em;
+			line-height: 1.25;
+			letter-spacing: -1px;
+			font-weight: normal;
+			margin: 0;
+			padding: 0 0 10px 0;
+		}
+		.post .caption p{
+			font-size: 0.8em;
+			line-height: 1.35;
+			font-weight: normal;
+			margin: 0;
+			padding: 0;
+		}
+
+		.post .caption a{
+			padding: 0 2px;
+			text-decoration: none;
+			color: #000;
+			border-bottom: 1px solid #ddd;
+			-webkit-transition: all .15s cubic-bezier(.33,.16,.66,1);
+			transition: all .15s cubic-bezier(.33,.16,.66,1);
+		}
+
+		.post .caption a:hover{
+			text-decoration: none;
+			color: #fff;
+			border-bottom: 1px solid #ddd;
+			background: #000;
+		}
+
 		.post .image img{
 			width: 100%;
+			float: left;
 		}
+
 		.post:nth-child(2n+0){
-			background: blue;
+
 		}
 		.post:nth-child(2n+0) .image,
 		.post:nth-child(2n+0) .caption{
 			float:right;
 		}
+		.post:nth-child(2n+0) .caption{
+			float:right;
+			margin-right: 30%;
+		}
+
 
 		#preloader{
 			content: 'loading...';
-		}
-		footer{
-			clear: both;
-			display: block;
-			background: orange;
 		}
 	</style>
 
@@ -96,8 +167,7 @@
 		<div id="posts" data-columns>
 			<div class="post">
 				<div class="image"><img src="http://www.75wanted.com/data/3_romain-courtemanche/240_cannes-et-son-palais/1432717721-0.45395600%201432719791.jpg"></div>
-				<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p>
-				<p class="foot">This is a simple line of text to see if this looks good or not.</p>
+				<div class="caption"><h2>This is something</h2><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit <a href="#">mollis</a> imperdiet.</p>
 				</div>
 			</div>
 			<div class="post">
@@ -123,7 +193,6 @@
 			<div class="post">
 				<div class="image"><img src="http://www.75wanted.com/data/3_romain-courtemanche/240_cannes-et-son-palais/1432717721-0.45395600%201432719791.jpg"></div>
 				<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p>
-				<p class="foot">This is a simple line of text to see if this looks good or not.</p>
 				</div>
 			</div>
 			<div class="post">
@@ -176,7 +245,7 @@
 	</section>
 	<footer>
 		<div class="pagenav">
-			<a href="more.html" class="next">Next »</a>
+			<a href="http://localhost/publicpress/more.html" class="next">Next »</a>
 		</div>
 	</footer>
 </div>
@@ -205,20 +274,22 @@ $(document).ready(function() {
 			console.log("original",newElements);
 		   	
 		   	var items = [];
-		    var grid = $('#posts');
+		    var grid = document.querySelector('#posts');
 
 		    for(i=0; i < newElements.length; i++) {
 		        var item_html = $(newElements[i]);
 		        	item_html = item_html.context.innerHTML;
 		        var item = document.createElement('div');
 		        	item.innerHTML = item_html;
-		        	item.setAttribute('class', 'required-classname');
+		        	item.setAttribute('class', 'post');
 					items.push(item);
 		    }
 
 		    console.log("grid:",grid, "items:", items);
 
-		    salvattore['append_elements'](grid, items);
+			salvattore.appendElements(grid, items);
+
+		    //salvattore['append_elements'](grid, items);
 		});
 
 	}
