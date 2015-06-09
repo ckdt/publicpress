@@ -185,36 +185,45 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	var $posts = $('#posts');
-	var grid = $posts;
 
-	imagesLoaded( $posts, function() {
+	var imgLoad = imagesLoaded( $('.posts') );
+	function onAlways( instance ) {
+		
+		console.log('all images are loaded');
+		
+		// hide Preloader 
 		$('#preloader').hide();
-		console.log("called");
 
+		// setup infinite scroll
+		var $posts = $('#posts');
+		$posts.infinitescroll({
+			navSelector  : ".pagenav",
+            nextSelector : ".next",
+            itemSelector : ".post",
+            appendCallback : false,
+		}, function(newElements) {
+			console.log("original",newElements);
+		   	
+		   	var items = [];
+		    var grid = $('#posts');
 
-		$('#posts').infinitescroll({
-				navSelector  : '.pagenav',
-				nextSelector : '.next',
-				itemSelector : '.post',
-				dataType : 'json',
-				appendCallback: false,
-				loading: {
-					finishedMsg: 'End of site.',
-					img: 'img/loader.gif'
-				}
-			},
-			function( newElements ) {
-				console.log(newElements);
-				var $newElems = $( newElements ).css({ opacity: 0 });
-				$newElems.imagesLoaded(function(){
-					fakeReload($newElems,false);
-				});
-			}
-		);
+		    for(i=0; i < newElements.length; i++) {
+		        var item_html = $(newElements[i]);
+		        	item_html = item_html.context.innerHTML;
+		        var item = document.createElement('div');
+		        	item.innerHTML = item_html;
+		        	item.setAttribute('class', 'required-classname');
+					items.push(item);
+		    }
 
+		    console.log("grid:",grid, "items:", items);
 
-	});
+		    salvattore['append_elements'](grid, items);
+		});
+
+	}
+	// bind imgLoad
+	imgLoad.on( 'always', onAlways );
 });
 </script>
 </body>

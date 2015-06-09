@@ -19,20 +19,22 @@ $(document).ready(function() {
 			console.log("original",newElements);
 		   	
 		   	var items = [];
-		    var grid = $('#posts');
+		    var grid = document.querySelector('#posts');
 
 		    for(i=0; i < newElements.length; i++) {
 		        var item_html = $(newElements[i]);
 		        	item_html = item_html.context.innerHTML;
 		        var item = document.createElement('div');
 		        	item.innerHTML = item_html;
-		        	item.setAttribute('class', 'required-classname');
+		        	//item.setAttribute('class', 'required-classname');
 					items.push(item);
 		    }
 
 		    console.log("grid:",grid, "items:", items);
 
-		    salvattore['append_elements'](grid, items);
+			salvattore.appendElements(grid, items);
+
+		    //salvattore['append_elements'](grid, items);
 		});
 
 	}
