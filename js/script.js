@@ -26,7 +26,7 @@ $(document).ready(function() {
 		        	item_html = item_html.context.innerHTML;
 		        var item = document.createElement('div');
 		        	item.innerHTML = item_html;
-		        	//item.setAttribute('class', 'required-classname');
+		        	item.setAttribute('class', 'post');
 					items.push(item);
 		    }
 
