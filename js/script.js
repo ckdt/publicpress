@@ -24,6 +24,9 @@ $(document).ready(function() {
 		    for(i=0; i < newElements.length; i++) {
 		        var item_html = $(newElements[i]);
 		        	item_html = item_html.context.innerHTML;
+
+		        	console.log('original classes', item_html.attr('class'));
+
 		        var item = document.createElement('div');
 		        	item.innerHTML = item_html;
 		        	item.setAttribute('class', 'post');

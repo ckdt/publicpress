@@ -71,10 +71,50 @@
 			overflow: hidden;
 		}
 
-		#posts[data-columns]::before {
-			content: '2 .column.size-1of2';
+		@media screen and (max-width: 480px){
+			#grid[data-columns]::before {
+				content: '1 .column.size-1of1';
+			}
+			.post .image{
+				width: 100%;
+				background: yellow;
+			}
+			.post:nth-child(2n+0) .image,
+			.post:nth-child(2n+0) .caption{
+				float:left;
+			}
+			.post:nth-child(2n+0) .caption{
+				float:left;
+				margin-left: 15%;
+			}
 		}
+
+		@media screen and (min-width: 481px) and (max-width: 768px) {
+			#posts[data-columns]::before {
+				content: '1 .column.size-1of1';
+			}
+			.post .image{
+				width: 100%;
+				background: yellow;
+			}
+			.post:nth-child(2n+0) .image,
+			.post:nth-child(2n+0) .caption{
+				float:left !important;
+			}
+			.post:nth-child(2n+0) .caption{
+				float:left;
+				margin-left: 15%;
+			}
+		}
+		@media screen and (min-width: 769px) {
+			#posts[data-columns]::before {
+				content: '2 .column.size-1of2';
+			}
+		}
+
+
 		.column { float: left; }
+		.size-1of1 { width: 100%; }
 		.size-1of2 { width: 50%; }
 
 		.post{
@@ -133,9 +173,6 @@
 			float: left;
 		}
 
-		.post:nth-child(2n+0){
-
-		}
 		.post:nth-child(2n+0) .image,
 		.post:nth-child(2n+0) .caption{
 			float:right;
@@ -178,12 +215,12 @@
 				<div class="image"><img src="http://38.media.tumblr.com/tumblr_m8w9odWqeW1qamm7n.jpg"></div>
 				<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p></div>
 			</div>
-			<div class="post">
-				<div class="image"><img src="http://www.ignant.de/wp-content/uploads/2015/05/Southafrica_Anke_01.jpg"></div>
+			<div class="post video">
+				<div class="video-player"><iframe width="560" height="315" src="https://www.youtube.com/embed/_a5BFfx32fE" frameborder="0" allowfullscreen></iframe></div>
 				<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p></div>
 			</div>
-			<div class="post">
-				<div class="image"><img src="http://www.75wanted.com/data/3_romain-courtemanche/51_i/1401378545-0.48613300%201401378869.jpg"></div>
+			<div class="post video">
+				<div class="video-player"><iframe src="https://player.vimeo.com/video/129684032?color=ffffff&title=0&byline=0&portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> </div>
 				<div class="caption"><p>Aliquam suscipit hendrerit nisl non volutpat. Ut eget nulla ac ligula dapibus egestas vel eu sapien. Aliquam finibus pellentesque sem vel laoreet. Nam et nulla a elit mollis imperdiet.</p></div>
 			</div>
 			<div class="post">
@@ -257,8 +294,20 @@ $(document).ready(function() {
 
 	var imgLoad = imagesLoaded( $('.posts') );
 	function onAlways( instance ) {
+
+		$( ".video-player" ).fitVids();
 		
-		console.log('all images are loaded');
+/*
+		$( ".video" ).each(function( index ) {
+			//get video stuff
+			$vidurl = $(this).find('iframe').attr('src');
+			console.log($vidurl);
+			customVideoThumbnail($vidurl);
+		});
+*/
+
+		
+
 		
 		// hide Preloader 
 		$('#preloader').hide();
@@ -296,6 +345,27 @@ $(document).ready(function() {
 	// bind imgLoad
 	imgLoad.on( 'always', onAlways );
 });
+/*
+
+function customVideoThumbnail(url){
+	//url = url.toLowerCase();
+
+	if( (url.indexOf('youtube.com') !== -1)){
+		// youtube
+		var vid = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=))([\w-]{10,12})/);
+		if(vid != null) {
+			console.log('http://img.youtube.com/vi/'+vid[1]+'/0.jpg');
+		}else{
+			// false id
+		}
+	}else if((url.indexOf('vimeo.com') !== -1)){
+		// vimeo
+	}else{
+		// custom
+	}
+}
+*/
+
 </script>
 </body>
 </html>
