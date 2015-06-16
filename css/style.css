@@ -112,6 +112,21 @@ header h1{
 	margin-right: 30%;
 }
 
+.credit{
+	font-size: 0.75em;
+	padding-bottom: 30px;
+	color: #ccc;
+}
+.credit a{
+	text-decoration: none;
+	color: #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.credit a:hover{
+	color: #999;
+	border-bottom: 1px solid #999;
+}
+
 
 #preloader{
 	content: 'loading...';
